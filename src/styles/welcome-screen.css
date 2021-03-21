@@ -1,0 +1,35 @@
+.welcome-bg{
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url("../assets/images/background.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.btn-text{
+    color: white;
+    letter-spacing: 2px;
+}
+
+.btn-text:hover{
+    color: white;
+
+}
+
+.welcome-content{
+    height: 80%;
+}
+
+.btn-order{
+    background: transparent;
+    color: white;
+    padding: 15px 20px;
+    border: 1px white solid;
+    border-radius: 30px;
+}
+
+.btn-order:hover{
+    color: #14213d;
+    background-color: #e5e5e5;
+}
