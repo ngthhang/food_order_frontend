@@ -22,8 +22,8 @@
 }
 
 .btn-order{
-    background: #fca311;
-    color: #14213d;
+    background: white;
+    color: black;
     padding: 15px 20px;
     /* border: 1px white solid; */
     border-radius: 30px;
@@ -34,6 +34,6 @@
 }
 
 .btn-order:hover{
-    color: #fca311;
-    background-color: #14213d;
+    color: white;
+    background-color: black;
 }

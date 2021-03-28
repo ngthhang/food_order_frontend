@@ -1,19 +1,14 @@
 import axios from "axios";
 import React, { Component } from "react";
+import {Link} from 'react-router-dom';
 import { MainHeader } from "../components/MainHomeComponents";
 import { Tabs, Button, Input, message } from "antd";
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons";
 import { Redirect } from 'react-router-dom'
+import {numFormat, getRecommendImg} from '../utils';
 import "antd/dist/antd.css";
 const { TabPane } = Tabs;
 
-const numFormat = (x) => {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-};
-
-const getRecommendImg = () => {
-  return require("../assets/images/recommend.svg").default;
-};
 
 export default class MainScreen extends Component {
   constructor(props) {
@@ -283,7 +278,7 @@ export default class MainScreen extends Component {
                                     </span>
                                     <span>{item.DESCRIPTION}</span>
                                     <span>
-                                      Khẩu phần: {item.RATION} / người
+                                      Khẩu phần: {item.RATION} người
                                     </span>
                                   </div>
                                 </div>
@@ -532,8 +527,14 @@ export default class MainScreen extends Component {
 
             {/* MAIN CART */}
             <div className="d-flex flex-column align-items-start justify-content-start main-cart h-100">
-              <div className="d-flex w-100 bg-warning img-cart align-items-center justify-content-start p-2">
-                <h1>Bàn {table}</h1>
+              <div className="d-flex flex-row w-100 bg-warning img-cart align-items-center justify-content-around p-2">
+                <h1 className='m-0'>Bàn {table}</h1>
+                <div className="d-flex flex-column">
+                  <span>Bạn đã đặt?</span>
+                  <Link to={`/order/table/${table}`}>
+                      <Button className='d-flex align-items-center px-3 py-2' type='primary'>Xem món đã đặt</Button>
+                  </Link>
+                </div>
               </div>
               <div className="d-flex flex-row align-items-end justify-content-between px-3 py-2 bg-white w-100">
                 <span>Đơn đặt món</span>

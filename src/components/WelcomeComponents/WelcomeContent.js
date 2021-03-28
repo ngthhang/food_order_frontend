@@ -26,9 +26,9 @@ export default class WelcomeContent extends Component {
   onChooseTable = (e) => {
     let value = e.target.value;
     if(isNaN(value)){
-        this.setState({ error: "Số bàn không hợp lệ, vui lòng nhập chữ số từ 1 đến 10"})
+        this.setState({ error: "Số bàn không hợp lệ, vui lòng nhập chữ số từ 1 đến 6"})
         return
-    } else if(value >= 11){
+    } else if(value >= 7){
         this.setState({error: "Vui lòng nhập đúng số bàn"})
         return
     }
@@ -44,8 +44,8 @@ export default class WelcomeContent extends Component {
         ) : (
           <div className="d-flex flex-column align-items-center justify-content-center welcome-content">
             <div className="text-center text-white pb-4">
-              <h4>Lorem Ipsum</h4>
-              <h6>
+              <h4 className="text-white">Nhà hàng ABC</h4>
+                <h6 className="text-white">
                 Lorem Ipsum lorem just Lorem Ipsum lorem just Lorem Ipsum lorem
                 just
               </h6>

@@ -21,7 +21,7 @@ export default class LoginForm extends Component {
                     </div>
                     <button type="submit" className="mt-3 btn btn-login py-2">LOGIN</button>
                 </form>
-                <span className='route-text pt-3'>You're not staff? Go back to <Link to='/welcome'>main page</Link>.</span>
+                <span className='route-text pt-3'>You're not staff? Go back to <Link to='/'>main page</Link>.</span>
             </div>
     );
   }
