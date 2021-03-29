@@ -4,6 +4,7 @@ import MainScreen from './MainScreen';
 import OrderScreen from './OrderScreen';
 import StaffScreen from './StaffScreen';
 import PaymentScreen from './PaymentScreen';
+import CashierScreen from './CashierScreen';
 
 export {
     LoginScreen,
@@ -11,5 +12,6 @@ export {
     MainScreen,
     OrderScreen,
     StaffScreen,
-    PaymentScreen
+    PaymentScreen,
+    CashierScreen
 }

@@ -4,7 +4,7 @@ import {
     Switch,
     Route
 } from "react-router-dom";
-import { LoginScreen, WelcomeScreen, MainScreen, OrderScreen, StaffScreen, PaymentScreen } from '../screens';
+import { LoginScreen, WelcomeScreen, MainScreen, OrderScreen, StaffScreen, PaymentScreen, CashierScreen } from '../screens';
 
 export default class AppRouter extends Component {
     render(){
@@ -22,6 +22,9 @@ export default class AppRouter extends Component {
                     <Route exact path="/payment/:table" render={(props) => <PaymentScreen {...props} />} />
                     <Route exact path="/staff">
                         <StaffScreen />
+                    </Route>
+                    <Route exact path="/cashier">
+                        <CashierScreen />
                     </Route>
                 </Switch>
             </Router >

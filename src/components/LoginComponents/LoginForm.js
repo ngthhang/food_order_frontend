@@ -10,6 +10,7 @@ export default class LoginForm extends Component {
       email: "",
       password: "",
       redirect: false,
+      isCashier: false,
       staffId: "",
     };
   }
@@ -20,9 +21,16 @@ export default class LoginForm extends Component {
 
   checkToken() {
     let token = localStorage.getItem("_token");
+    let cashierToken = localStorage.getItem("_c_token");
     if(token){
       this.setState({
         redirect: true
+      })
+    }
+    if(cashierToken){
+      this.setState({
+        redirect: true,
+        isCashier: true
       })
     }
   }
@@ -69,9 +77,16 @@ export default class LoginForm extends Component {
           password,
         })
         .then((response) => {
-          localStorage.setItem("_token", response.data.token);
           message.success("Đăng nhập thành công");
+          let cashier = false;
+          if(response.data.staffPosition === 2 || response.data.staffPosition === '2'){
+            cashier = true;
+            localStorage.setItem("_c_token", response.data.token);
+          }else{
+            localStorage.setItem("_token", response.data.token);
+          }
           this.setState({
+            isCashier: cashier,
             redirect: true,
           });
         })
@@ -82,11 +97,11 @@ export default class LoginForm extends Component {
   };
 
   render() {
-    const {  redirect } = this.state;
+    const {  redirect, isCashier } = this.state;
     return (
       <>
         {redirect ? (
-          <Redirect push to='/staff' />
+          <Redirect push to={isCashier ? '/cashier' : '/staff'} />
         ) : (
           <div className="bg-white d-flex flex-column align-items-center justify-content-center p-5 login-form">
             <h6>FOOD ORDER</h6>

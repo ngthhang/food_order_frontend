@@ -46,8 +46,7 @@ export default class WelcomeContent extends Component {
             <div className="text-center text-white pb-4">
               <h4 className="text-white">Nhà hàng ABC</h4>
                 <h6 className="text-white">
-                Lorem Ipsum lorem just Lorem Ipsum lorem just Lorem Ipsum lorem
-                just
+                Nhà hàng chúng tôi chuyên cung cấp những món ăn ngon miệng vừa tốt cho sức khoẻ cho quý khách
               </h6>
             </div>
             <button className="btn btn-lg btn-order" onClick={this.showModal}>
