@@ -14,6 +14,19 @@ export default class LoginForm extends Component {
     };
   }
 
+  componentDidMount() {
+    this.checkToken();
+  }
+
+  checkToken() {
+    let token = localStorage.getItem("_token");
+    if(token){
+      this.setState({
+        redirect: true
+      })
+    }
+  }
+
   onChangeEmail = (e) => {
     let email = e.target.value;
     this.setState({
@@ -58,9 +71,7 @@ export default class LoginForm extends Component {
         .then((response) => {
           localStorage.setItem("_token", response.data.token);
           message.success("Đăng nhập thành công");
-          console.log(response.data.staffId);
           this.setState({
-            staffId: response.data.staffId,
             redirect: true,
           });
         })
@@ -71,11 +82,11 @@ export default class LoginForm extends Component {
   };
 
   render() {
-    const { staffId, redirect } = this.state;
+    const {  redirect } = this.state;
     return (
       <>
         {redirect ? (
-          <Redirect push to={`/staff/${staffId}`} />
+          <Redirect push to='/staff' />
         ) : (
           <div className="bg-white d-flex flex-column align-items-center justify-content-center p-5 login-form">
             <h6>FOOD ORDER</h6>

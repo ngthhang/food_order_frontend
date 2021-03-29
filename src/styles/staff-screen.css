@@ -9,6 +9,10 @@
     rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 }
 
+.bg-main{
+    background-color: #ffd166
+}
+
 .header-text{
   font-size: 16px
 }
@@ -35,13 +39,12 @@
     background-color: #e2eafc
 }
 
-.btn-complete{
-    background-color: #e5383b;
-    color: white;
+
+
+.bg-detail {
+    background-color: #d4e5ef;
 }
 
-.btn-complete:hover {
-    background-color: #e5383b;
-    color: white;
-    border: 1px solid #e5383b;
+.ant-table-content{
+    font-size: 16px;
 }

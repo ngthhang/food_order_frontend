@@ -4,7 +4,7 @@ import {
     Switch,
     Route
 } from "react-router-dom";
-import { LoginScreen, WelcomeScreen, MainScreen, OrderScreen, StaffScreen } from '../screens';
+import { LoginScreen, WelcomeScreen, MainScreen, OrderScreen, StaffScreen, PaymentScreen } from '../screens';
 
 export default class AppRouter extends Component {
     render(){
@@ -19,8 +19,10 @@ export default class AppRouter extends Component {
                         <LoginScreen />
                     </Route>
                     <Route exact path="/order/table/:table" render={(props) => <OrderScreen {...props} />} />
-                    <Route exact path="/staff/:id" render={(props) => <StaffScreen {...props} />} />
-                    
+                    <Route exact path="/payment/:table" render={(props) => <PaymentScreen {...props} />} />
+                    <Route exact path="/staff">
+                        <StaffScreen />
+                    </Route>
                 </Switch>
             </Router >
         );
