@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import { Table, Button, Input, Divider, message } from "antd";
+import { Table, Button, Divider, message, InputNumber } from "antd";
 import { numFormat } from "../utils";
 
 const columns = [
@@ -71,9 +71,9 @@ export default class CashierScreen extends Component {
   };
 
   init = async () => {
+    this.checkAuthentication();
     let staff = await this.getStaffInfo();
     const tables = await this.getAllTable();
-    this.checkAuthentication();
     this.setState({
       staff: staff,
       tables,
@@ -174,8 +174,7 @@ export default class CashierScreen extends Component {
     });
   };
 
-  addMoneyReceived = (e) => {
-    let value = e.target.value;
+  addMoneyReceived = (value) => {
     if (isNaN(value)) {
       message.error("Nhập số tiền không hợp lệ");
     } else {
@@ -186,7 +185,11 @@ export default class CashierScreen extends Component {
   };
 
   createInvoice = async () => {
-    const { table } = this.state;
+    const { table, moneyReceived, finalPrice } = this.state;
+    if(moneyReceived - finalPrice < 0){
+      message.error("Số tiền khách trả không đủ, vui lòng nhập lại")
+      return;
+    }
     const result = await axios.get(
       `http://localhost:8000/update_status/${table}`
     );
@@ -288,14 +291,16 @@ export default class CashierScreen extends Component {
                       <span className="price-text price-total pt-2 border-top">
                         Tổng số tiền sau thuế: {numFormat(finalPrice)} VND
                       </span>
-                      <Input
-                        placeholder="Nhập tiền khách đưa"
-                        className="w-25 py-2 my-2"
-                        onChange={this.addMoneyReceived}
-                      />
+                        <InputNumber
+                          placeholder="Nhập tiền khách đưa"
+                          className="w-25 py-2 my-2"
+                          formatter={value => `${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                          parser={value => value.replace(/\$\s?|(,*)/g, '')}
+                          onChange={this.addMoneyReceived}
+                        />
                       <span className="price-text">
                         Tiền thừa:
-                        {(moneyReceived - finalPrice) <= 0 ? "0 VND" : numFormat(moneyReceived - finalPrice) + "VND"}
+                        {(moneyReceived - finalPrice) <= 0 ? " 0 VND" : " " + numFormat(moneyReceived - finalPrice) + " VND"}
                       </span>
                       <Button
                         onClick={this.createInvoice}
